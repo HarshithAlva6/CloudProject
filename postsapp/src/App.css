@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+  background-color: #be0049;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 200vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.card{
+  border-radius: 8px;
+  border: 1px solid #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 200px;
+  height: 300px;
+  transition: all linear 200ms;
+}
+.cont {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.card:hover{
+  transform: scale(1.1);
+  transition: all linear 200ms;
+  z-index: 1;
+  box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+  cursor: pointer;
+}
+
+#but {
+  border-radius: 10px;
+  border: none;
+}
+#but:hover {
+  transform: scale(1.2);
+}
+.container {
+  width:180px;
+  height: 200px;
+  margin-bottom: 10px;
+}
+.container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lalign {
+  margin: 0 40%;
+  text-align: left;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+h2 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
