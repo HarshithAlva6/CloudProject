@@ -1,7 +1,9 @@
 import './App.css';
 import React, { Component } from 'react';
-import UsersList from './usersList';
+import { Route,Routes } from 'react-router-dom';
 import ImagesList from './ImagesList';
+import Navi from './Navi';
+import WatchedList from './WatchedList';
 
 //function App() {
 //  return (
@@ -15,8 +17,11 @@ class App extends Component {
   render() {
     return (
         <div className="App">
-          <UsersList />
-          <ImagesList />
+          <Navi />
+          <Routes>        
+            <Route path="/customers"  element={<ImagesList/>} />
+            <Route path="/content"  element={<WatchedList />}/>
+          </Routes>
         </div>
     );
   }

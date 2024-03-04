@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Pagination from './Pagination';
 import Posts from './Posts';
-import UsersList from './usersList';
+import ContentList from './ContentList';
 
-function ImagesList() {
+function WatchedList() {
     const [currentPage, setCurrentPage] = useState(1);
     const [recordsPerPage] = useState(50);
     const indexOfLastRecord = currentPage * recordsPerPage;
@@ -14,7 +14,7 @@ function ImagesList() {
     const nPages = Math.ceil(r.keys().length / recordsPerPage);
 return (
     <div>
-    <UsersList />
+    <ContentList />
     <Posts data = {currentRecords} nPages={nPages}
     currentPage={currentPage}
     setCurrentPage={setCurrentPage}/>
@@ -26,4 +26,4 @@ return (
     );
 }
 
-export default ImagesList;
+export default WatchedList;

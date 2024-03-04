@@ -9,7 +9,6 @@ const Posts = (props) => {
         let i = 0;
         const r = require.context('../src/images/instagram_data2/img2', true);
         props.data.forEach(item => {
-            console.log(r(item));
             const importedImg = r(item); // import image
             importedImages[item.replace("./", "")] = importedImg; // name of file will be a key, path to file will be a value
             const img = new Image();
@@ -20,7 +19,7 @@ const Posts = (props) => {
             img.src = importedImg;
             });
         setImages(importedImages); 
-    }, []);
+    }, [props.currentPage]);
     if (Object.keys(images).length !== imagesReadyCnt || imagesReadyCnt < 1) {  
         return  "Loading ...";
       }
