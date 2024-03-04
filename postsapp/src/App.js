@@ -1,9 +1,9 @@
 import './App.css';
 import React, { Component } from 'react';
 import { Route,Routes } from 'react-router-dom';
-import ImagesList from './ImagesList';
-import Navi from './Navi';
-import WatchedList from './WatchedList';
+import ImagesList from './Users/ImagesList';
+import Navi from './common/Navi';
+import WatchedList from './Content/WatchedList';
 
 //function App() {
 //  return (

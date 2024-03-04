@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CustomersList from './CustomersList';
+import CustomersList from '../common/CustomersList';
 import './App.css';
 
 function ContentList() {

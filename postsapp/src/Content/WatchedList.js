@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Pagination from './Pagination';
-import Posts from './Posts';
+import Pagination from '../common/Pagination';
+import Posts from '../common/Posts';
 import ContentList from './ContentList';
 
 function WatchedList() {
