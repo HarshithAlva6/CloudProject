@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CustomersList from '../common/CustomersList';
-import './App.css';
+import '../App.css';
 
 function ContentList() {
   const [content, setContent] = useState([]);

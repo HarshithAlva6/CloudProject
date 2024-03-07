@@ -9,7 +9,7 @@ function ImagesList() {
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
-    const r = require.context('../src/images/instagram_data2/img2', true);
+    const r = require.context('../../src/images/instagram_data2/img2', true);
     const currentRecords = r.keys().slice(indexOfFirstRecord, indexOfLastRecord);
     const nPages = Math.ceil(r.keys().length / recordsPerPage);
 return (
