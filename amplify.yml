@@ -12,7 +12,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - cd /postsapp
+        - cd postsapp
     build:
       commands: 
         - npm start
