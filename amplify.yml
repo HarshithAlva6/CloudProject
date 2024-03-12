@@ -3,7 +3,7 @@ backend:
   phases:
     build:
       commands:
-        - docker compose up
+        - docker-compose up
 frontend:
   phases:
     preBuild:
@@ -11,7 +11,7 @@ frontend:
         - cd /postsapp
     build:
       commands: 
-        -npm start
+        - npm start
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: /
