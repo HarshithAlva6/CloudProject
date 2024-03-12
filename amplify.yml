@@ -1,6 +1,10 @@
 version: 1
 backend:
   phases:
+  preBuild:
+    commands:
+        - sudo yum install -y docker
+        - sudo service docker start
     build:
       commands:
         - docker-compose up
