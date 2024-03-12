@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 const Posts = (props) => {
-    console.log(props);
+    console.log("Posts",props);
     const [images, setImages] = useState({}); 
     const [imagesReadyCnt, setImagesReadyCnt] = useState(0);  // counter of preloaded images
     const [myStyle, setMyStyle] = useState({});

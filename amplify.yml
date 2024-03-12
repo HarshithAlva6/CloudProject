@@ -13,8 +13,11 @@ frontend:
     preBuild:
       commands:
         - cd postsapp
+        - rm -rf node_modules
+        - rm -rf package-lock.json
     build:
       commands: 
+        - npm install
         - npm start
   artifacts:
     # IMPORTANT - Please verify your build output directory
