@@ -25,7 +25,7 @@ const Posts = (props) => {
         return  "Loading ...";
       }
     const notOk = (id) => {
-      console.log(id);
+      console.log(id, "ID");
       setMyStyle(prevState => ({
         ...myStyle,
         [id]: !prevState[id]
@@ -38,7 +38,7 @@ const Posts = (props) => {
         <div class="m2 card">
           <h5 class="card-title">Posts</h5>
           <div class = "container" style={{
-            opacity: myStyle[`${i}`] ? 0.1 : 1}} key = {i}>
+            opacity: myStyle[`${i += (props.currentPage-1)*50}`] ? 0.1 : 1}} key = {i}>
             <img src={value} />
           </div>
           <button id = "but" onClick = {() => notOk(i)}>Is this Post not OK?</button>
