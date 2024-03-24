@@ -1,16 +1,17 @@
-import * as React from "react";
+import React, {useState, useEffect} from "react";
 import { loadBlockchainData, loadWeb3 } from "../Web3helpers";
+import {putData} from "./fetch";
  
 import { useNavigate } from "react-router-dom";
 export default function SignUp() {
-  const [username, setUsername] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
  
   const navigate = useNavigate();
  
-  const [accounts, setAccounts] = React.useState(null);
-  const [auth, setAuth] = React.useState(null);
+  const [accounts, setAccounts] = useState(null);
+  const [auth, setAuth] = useState(null);
  
   const loadAccounts = async () => {
     let { auth, accounts } = await loadBlockchainData();
@@ -19,7 +20,7 @@ export default function SignUp() {
     setAuth(auth);
   };
  
-  const signUp = async () => {
+  const addDataToDynamoDB = async () => {
     if (!username || !email || !password) {
       alert("please fill all details");
       return;
@@ -33,7 +34,12 @@ export default function SignUp() {
       await auth.methods
         .createUser(username, email, password)
         .send({ from: accounts });
- 
+        const userData = {
+          userName:username,
+          email:email,
+          password: password
+        }
+      await putData('Users' , userData);
       localStorage.setItem("username", username);
       localStorage.setItem("email", email);
       navigate("/");
@@ -41,18 +47,18 @@ export default function SignUp() {
       console.log(e.message);
     }
   };
-  React.useEffect(() => {
+  useEffect(() => {
     loadWeb3();
   }, []);
  
-  React.useEffect(() => {
+  useEffect(() => {
     loadAccounts();
   }, []);
  
   return (
     <div style={rootDiv}>
       <img
-        src="https://media.geeksforgeeks.org/wp-content/uploads/20210318103632/gfg.png"
+        src="https://media.istockphoto.com/id/1057455004/vector/hand-hold-phone-logotype-hand-hold-smartphone.jpg?s=612x612&w=0&k=20&c=-RXiEdROvJMurKjA09aBGn4FJ2_qo_gIRMHdnV92oS4="
         style={image}
         alt="geeks"
       />
@@ -77,7 +83,7 @@ export default function SignUp() {
         placeholder="Password"
         type="password"
       />
-      <button style={button} onClick={signUp}>
+      <button style={button} onClick={() => addDataToDynamoDB()}>
         {" "}
         Sign Up
       </button>
@@ -111,7 +117,7 @@ const button = {
   cursor: "pointer",
   fontSize: 17,
   color: "white",
-  backgroundColor: "#9D27CD",
+  backgroundColor: "#0055D0",
   border: "none",
 };
  

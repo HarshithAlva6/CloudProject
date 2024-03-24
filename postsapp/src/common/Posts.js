@@ -24,12 +24,13 @@ const Posts = (props) => {
     if (Object.keys(images).length !== imagesReadyCnt || imagesReadyCnt < 1) {  
         return  "Loading ...";
       }
-    const notOk = (id) => {
+    const notOk = (id, value) => {
       console.log(id, "ID");
       setMyStyle(prevState => ({
         ...myStyle,
         [id]: !prevState[id]
       }))
+      props.func(id, value);
       console.log(myStyle);
     }
     return(<div>
@@ -41,7 +42,7 @@ const Posts = (props) => {
             opacity: myStyle[`${i += (props.currentPage-1)*50}`] ? 0.1 : 1}} key = {i}>
             <img src={value} />
           </div>
-          <button id = "but" onClick = {() => notOk(i)}>Is this Post not OK?</button>
+          <button id = "but" onClick = {() => notOk(i, value)}>Is this Post not OK?</button>
         </div>
       </div>
       )}

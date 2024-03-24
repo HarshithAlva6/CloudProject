@@ -16,16 +16,11 @@ if (window.ethereum) {
 };
 
 export const loadBlockchainData = async () => {
-const web3 = window.web3;
-// Load account
+const web3 = window.web3; // Load account
 const accounts = await web3.eth.getAccounts();
-console.log(accounts);
-// Network ID
-
+console.log(accounts); // Network ID
 const networkId = await web3.eth.net.getId();
-console.log(networkId);
-// Network data
-
+console.log(networkId); // Network data
 if (networkId) {
 	const auth = new web3.eth.Contract(
 	Auth.abi,
@@ -33,5 +28,5 @@ if (networkId) {
 	);
 	console.log(auth, "auth");
 	return { auth, accounts: accounts[0] };
-}
+	}
 };

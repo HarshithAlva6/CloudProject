@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Pagination from '../common/Pagination';
 import Posts from '../common/Posts';
 import ContentList from './ContentList';
+import Navi from '../common/Navi';
 
 function WatchedList() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -14,6 +15,7 @@ function WatchedList() {
     const nPages = Math.ceil(r.keys().length / recordsPerPage);
 return (
     <div>
+    <Navi />
     <ContentList />
     <Posts data = {currentRecords} nPages={nPages}
     currentPage={currentPage}

@@ -15,10 +15,32 @@ const Navi = () => {
           <a class="nav-item nav-link"><Link to="/content">Watched</Link></a>
           <a class="nav-item nav-link" href="#">Watch List</a>
         </div>
+        <button
+		style={button}
+		onClick={() => {
+		localStorage.removeItem("email");
+		localStorage.removeItem("account");
+		window.location.reload();
+		}}
+	>
+		{" "}
+		Log out
+	</button>
       </div>
     </nav>
     <h2>WEB CONTENT</h2>
     </div>
     );
 }
+const button = {
+  width: 100,
+  padding: 10,
+  borderRadius: 5,
+  margin: 10,
+  cursor: "pointer",
+  fontSize: 17,
+  color: "white",
+  backgroundColor: "#9D27CD",
+  border: "none",
+  };
 export default Navi;

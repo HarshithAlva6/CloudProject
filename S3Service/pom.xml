@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.consumption.media</groupId>
-	<artifactId>S3Service</artifactId>
+	<artifactId>s3-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>S3Service</name>
 	<description>Final Year Project on Microservices using AWS</description>
@@ -54,6 +54,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<image>
+                        <bindings>
+                            <binding>${basedir}/bindings/ca-certificates:/platform/bindings/ca-certificates</binding>
+                        </bindings>
+						<env>
+                            <BP_JVM_VERSION>${java.version}</BP_JVM_VERSION>
+                        </env>
+                    </image>
+					<nonFilteredFileExtensions>
+						<nonFilteredFileExtension>properties</nonFilteredFileExtension>
+					</nonFilteredFileExtensions>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
