@@ -18,6 +18,7 @@ function ImagesList() {
     const pull_data = (data, value) => {
         console.log("Pulled!",data, "Value",value);
     }
+    const page = "Images";
 return (
     <div>
     <Navi />
@@ -26,7 +27,7 @@ return (
     <Posts data = {currentRecords} nPages={nPages}
     currentPage={currentPage}
     setCurrentPage={setCurrentPage}
-    func={pull_data}/>
+    func={pull_data} where = {page}/>
     <Pagination
     nPages={nPages}
     currentPage={currentPage}

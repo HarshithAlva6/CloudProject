@@ -10,16 +10,22 @@ function WatchedList() {
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
-    const r = require.context('../../src/images/instagram_data2/img2', true);
+    const r = require.context('../../src/images/train', true);
     const currentRecords = r.keys().slice(indexOfFirstRecord, indexOfLastRecord);
     const nPages = Math.ceil(r.keys().length / recordsPerPage);
+    const pull_data = (data, value) => {
+        console.log("Pulled!",data, "Value",value);
+    }
+    const page = "Watched";
 return (
     <div>
     <Navi />
     <ContentList />
     <Posts data = {currentRecords} nPages={nPages}
     currentPage={currentPage}
-    setCurrentPage={setCurrentPage}/>
+    setCurrentPage={setCurrentPage}
+    func={pull_data}
+    where = {page}/>
     <Pagination
     nPages={nPages}
     currentPage={currentPage}

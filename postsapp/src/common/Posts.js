@@ -8,7 +8,8 @@ const Posts = (props) => {
     useEffect(() => {
         const importedImages = {};
         let i = 0;
-        const r = require.context('../../src/images/instagram_data2/img2', true);
+        if(props.where === 'Images') var r = require.context('../../src/images/instagram_data2/img2', true);
+        else var r = require.context('../../src/images/train', true);
         props.data.forEach(item => {
             const importedImg = r(item); // import image
             importedImages[item.replace("./", "")] = importedImg; // name of file will be a key, path to file will be a value

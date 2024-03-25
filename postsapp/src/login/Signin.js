@@ -23,14 +23,14 @@ export default function SignIn() {
       console.log('Items found:', items);
     });
   }
-  const addDataToDynamoDB = async () => {
-    const userData = {
-      userName:"HarshAlva",
-      email:"Harshith.alva318@gmail.com",
-	    password: "harsh6"
-    }
-	await putData('Users' , userData);
-  }
+  //const addDataToDynamoDB = async () => {
+  //  const userData = {
+  //    userName:"HarshAlva",
+  //    email:"Harshith.alva318@gmail.com",
+	//    password: "harsh6"
+  //  }
+	//await putData('Users' , userData);
+  //}
  
   const login = async () => {
     if (!email || !password) {
@@ -99,7 +99,6 @@ export default function SignIn() {
         Create new account{" "}
       </span>
       <button onClick={() => fetchDataFormDynamoDb()}> Fetch </button>
-	    <button onClick={() => addDataToDynamoDB()}> Put </button>
     </div>
   );
 }
