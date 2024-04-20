@@ -46,6 +46,11 @@
     		<artifactId>aws-java-sdk-s3</artifactId>
     		<version>1.12.675</version>
 		</dependency>
+		<dependency>
+    		<groupId>com.amazonaws</groupId>
+    		<artifactId>aws-java-sdk-dynamodb</artifactId>
+    		<version>1.12.191</version> <!-- Update to the latest version -->
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -29,21 +29,19 @@
   color: #61dafb;
 }
 
+.cont {
+  display: inline-block;
+  margin-bottom: 15px;
+  position: relative;
+  padding: 20px;
+  transition: all linear 200ms;
+}
 .card{
   border-radius: 8px;
-  border: 1px solid #cccccc;
-  display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
   box-sizing: border-box;
-  width: 200px;
-  height: 300px;
-  transition: all linear 200ms;
-}
-.cont {
-  display: inline-block;
-  margin-bottom: 20px;
 }
 
 .card:hover{
@@ -86,11 +84,17 @@
   justify-content: center;
 }
 h2 {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Sriracha", cursive;
 }
 .prof {
   width: 200px;
   height: 200px;
+}
+
+.like-button-container {
+  position: absolute;
+  top: 10px;
+  right: 30px;
 }
 
 @keyframes App-logo-spin {

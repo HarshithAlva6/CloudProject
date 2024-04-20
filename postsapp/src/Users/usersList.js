@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CustomersList from '../common/CustomersList';
+import AxiosList from '../common/AxiosList';
 
 function UsersList() {
   const [customers, setCustomers] = useState([]);
@@ -7,12 +7,11 @@ function UsersList() {
   useEffect(() => {
     async function fetchData() {
         try {
-            const response = await CustomersList.getCustomers();
+            const response = await AxiosList.getCustomers();
             console.log("What",response.data);
             setCustomers(response.data);
         } catch (error) {
             console.error('Error fetching users:', error);
-            // Handle error if necessary
         }
       }
       fetchData();

@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import '../App.css';
 
 const Navi = () => {
     return(
@@ -11,9 +12,10 @@ const Navi = () => {
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active"><Link to="/customers">Home</Link> <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link"><Link to="/content">Watched</Link></a>
-          <a class="nav-item nav-link" href="#">Watch List</a>
+          <a class="nav-item nav-link active"><Link to="/Home">Home</Link> <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link"><Link to="/train">Train</Link></a>
+          <a class="nav-item nav-link"><Link to="/bucket">Feed</Link></a>
+          <a class="nav-item nav-link"><Link to="/content">Blocked</Link></a>
         </div>
         <button
 		style={button}
@@ -33,14 +35,15 @@ const Navi = () => {
     );
 }
 const button = {
-  width: 100,
+  width: 80,
   padding: 10,
   borderRadius: 5,
-  margin: 10,
   cursor: "pointer",
   fontSize: 17,
-  color: "white",
-  backgroundColor: "#9D27CD",
-  border: "none",
+  color: "#be0049",
+  backgroundColor: "cream",
+  border: "1px #be0049",
+  position: "absolute",
+  right: 20,
   };
 export default Navi;

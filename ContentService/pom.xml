@@ -58,6 +58,11 @@
     		<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
+		<dependency>
+    		<groupId>com.amazonaws</groupId>
+    		<artifactId>aws-java-sdk-dynamodb</artifactId>
+    		<version>1.12.191</version> <!-- Update to the latest version -->
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,19 +1,18 @@
 import React, {useState, useEffect} from "react";
 import { loadBlockchainData, loadWeb3 } from "../Web3helpers";
 import { useNavigate } from "react-router-dom";
-import {fetchData, putData} from './fetch';
+import {fetchData} from './fetch';
+import Navi from "../common/Navi";
  
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
- 
   const [accounts, setAccounts] = useState(null);
   const [auth, setAuth] = useState(null);
  
   const loadAccounts = async () => {
     let { auth, accounts } = await loadBlockchainData();
- 
     setAccounts(accounts);
     setAuth(auth);
   };
@@ -23,23 +22,13 @@ export default function SignIn() {
       console.log('Items found:', items);
     });
   }
-  //const addDataToDynamoDB = async () => {
-  //  const userData = {
-  //    userName:"HarshAlva",
-  //    email:"Harshith.alva318@gmail.com",
-	//    password: "harsh6"
-  //  }
-	//await putData('Users' , userData);
-  //}
  
   const login = async () => {
     if (!email || !password) {
       alert("please fill all details");
       return;
     }
- 
     try {
-      //const res = await auth.methods.usersList(email).call();
       fetchData('Users',(err, items) => {
         if(items.find(item => item.email === email)){  
         localStorage.setItem("email", email);
@@ -64,6 +53,7 @@ export default function SignIn() {
  
   return (
     <div style = {rootDiv}>
+      <Navi />
        <h2>WEB CONTENT</h2>
       <img
         src="https://media.istockphoto.com/id/1057455004/vector/hand-hold-phone-logotype-hand-hold-smartphone.jpg?s=612x612&w=0&k=20&c=-RXiEdROvJMurKjA09aBGn4FJ2_qo_gIRMHdnV92oS4="

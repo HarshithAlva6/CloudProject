@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CustomersList from '../common/CustomersList';
+import AxiosList from '../common/AxiosList';
 import '../App.css';
 
 function ContentList() {
@@ -8,7 +8,7 @@ function ContentList() {
   useEffect(() => {
     async function fetchImg() {
         try {
-            const response = await CustomersList.getImages();
+            const response = await AxiosList.getImages();
             setContent(response.data);
         } catch (error) { console.error('Error fetching users:', error); }
       }
@@ -18,7 +18,7 @@ function ContentList() {
   return (
     <div>
       <div className="App-intro">
-          <div className = "ralign">
+          <div className = "ralign"> 
             {content.map(content =>
               <div key={content.id}>
               <p><b>{content.uname}</b></p> 
