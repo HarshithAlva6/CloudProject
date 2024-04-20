@@ -54,7 +54,6 @@ export default function SignIn() {
   return (
     <div style = {rootDiv}>
       <Navi />
-       <h2>WEB CONTENT</h2>
       <img
         src="https://media.istockphoto.com/id/1057455004/vector/hand-hold-phone-logotype-hand-hold-smartphone.jpg?s=612x612&w=0&k=20&c=-RXiEdROvJMurKjA09aBGn4FJ2_qo_gIRMHdnV92oS4="
         style={image}

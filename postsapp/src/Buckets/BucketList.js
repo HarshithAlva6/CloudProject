@@ -11,6 +11,7 @@ export default function BucketList() {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(50);
   const [id, setId] = useState([]);
+  const [likeId, setLikeId] = useState([]);
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
 
@@ -30,8 +31,16 @@ export default function BucketList() {
       })
     } catch (error) { console.error('Error fetching users:', error); }
   }
+  async function fetchLikedImg() {
+    try {
+      fetchData('LikeImages',(err, items) => {
+          setLikeId(items);
+      })
+    } catch (error) { console.error('Error fetching users:', error); }
+  }
 useEffect(() => {
     fetchImg();
+    fetchLikedImg();
 }, []);
   const currentRecords = content.slice(indexOfFirstRecord, indexOfLastRecord);
   const nPages = Math.ceil(content.length / recordsPerPage);
@@ -46,7 +55,7 @@ useEffect(() => {
       currentPage={currentPage}
       setCurrentPage={setCurrentPage}
       func={pull_data}
-      where = {page} id = {id}/>
+      where = {page} id = {id} likeId = {likeId} />
       <Pagination
       nPages={nPages}
       currentPage={currentPage}

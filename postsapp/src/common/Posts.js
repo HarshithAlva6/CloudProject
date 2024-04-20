@@ -27,9 +27,19 @@ const Posts = (props) => {
                 ...prevState,
                 [ide.imageId]: !prevState[ide.imageId]
               }))
-            console.log(myStyle); 
-            return;         
-          }});           
+              console.log(myStyle); 
+              return;         
+            }});   
+            props.likeId.find(ide => {
+              if((ide.imageName === img.src) && ide.display) {
+                console.log(ide, img.src);
+                if (likedPosts.includes(ide.imageId)) {
+                  setLikedPosts(likedPosts.filter(id => id !== ide.imageId));
+                } else {
+                  setLikedPosts([...likedPosts, ide.imageId]);
+                }
+              return;         
+            }});         
           })
         setImages(importedImages); 
     }, [props]);
