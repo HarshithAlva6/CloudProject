@@ -14,13 +14,12 @@ export const App = () => {
     return (
         <div className="App">
           <Routes>        
-            <Route path="/customers" element={<ImagesList />}/>
-            <Route path="/train" element={<ImageClassifierApp />} />
-            <Route path="/content"  element={<WatchedList />}/>
+            <Route path="/Fav" element={<ImagesList />}/>
+            <Route path="/Train" element={<ImageClassifierApp />} />
+            <Route path="/Block"  element={<WatchedList />}/>
             <Route exact path="/" element={<SignIn />} />
             <Route path="/Signup" element={<SignUp />} />
-            <Route path="/bucket" element={<BucketList />} />
-            <Route path="/Home" element={email ? <ImagesList /> : <Navigate to="/" />}
+            <Route path="/Home" element={email ? <BucketList /> : <Navigate to="/" />}
           />
           </Routes>
         </div>

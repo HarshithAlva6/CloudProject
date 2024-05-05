@@ -14,6 +14,7 @@ export default function BucketList() {
   const [likeId, setLikeId] = useState([]);
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const email = localStorage.getItem("email");
 
   async function fetchBucket() {
     try {
@@ -26,15 +27,23 @@ export default function BucketList() {
   }, []);
   async function fetchImg() {
     try {
-      fetchData('Images',(err, items) => {
-          setId(items);
+      fetchData('UserImage',(err, items) => {
+        var res = [];
+        items.find(item => {
+          if(item.email === email) res.push(item);
+          })
+          setId(res);
       })
     } catch (error) { console.error('Error fetching users:', error); }
   }
   async function fetchLikedImg() {
     try {
       fetchData('LikeImages',(err, items) => {
-          setLikeId(items);
+        var res = [];
+        items.find(item => {
+          if(item.email === email) res.push(item);
+          })
+          setLikeId(res);
       })
     } catch (error) { console.error('Error fetching users:', error); }
   }

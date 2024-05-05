@@ -13,6 +13,7 @@ function ImageClassifier() {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(false);
   const [trainingInProgress, setTrainingInProgress] = useState(false);
+  const [classify, setClass] = useState('');
 
 async function fetchBucket() {
   try {
@@ -105,18 +106,20 @@ async function fetchAndClassifyImages() {
   const targetTensors = [];
   var dataArray = [];
   images.forEach(image => {
-    const predictionKey = JSON.stringify(image.prediction[0].className);
-    if (!groupedImages[predictionKey]) {
-      groupedImages[predictionKey] = [];
-    }
-    groupedImages[predictionKey].push(image);
+    image.prediction.forEach(prediction => {
+      const predictionKey = JSON.stringify(prediction.className);
+      if (!groupedImages[predictionKey]) {
+        groupedImages[predictionKey] = [];
+      }
+      groupedImages[predictionKey].push(image);
+    })
   });
   for (const predictionKey in groupedImages) {
     var groupImages = groupedImages[predictionKey];
     const numSamples = groupImages.length;
     console.log(predictionKey, '+', groupImages, "+", groupedImages, 
   '+', typeof(predictionKey));
-    if(numSamples == 2){
+    if(predictionKey == `"${classify}"`){
       console.log("Got in!");
       groupImages.forEach(item => {
         dataArray.push({
@@ -128,7 +131,6 @@ async function fetchAndClassifyImages() {
     }
     console.log(`Group: ${predictionKey}, Number of samples: ${numSamples}`);
     for (const imageObj of groupImages) {
-      console.log("Why?");
       const imgTensor = await loadImage(imageObj.url);
       inputTensors.push(imgTensor);
       targetTensors.push(imgTensor);
@@ -198,7 +200,6 @@ async function fetchAndClassifyImages() {
   return (
     <div>
       <Navi />
-      <button onClick={fetchAndClassifyImages}>Fetch and Classify Images</button>
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -214,8 +215,12 @@ async function fetchAndClassifyImages() {
       </div>
       )
       ))}
-            {trainingInProgress && <p>Training in progress...</p>}
-            <button onClick={trainImages}>Train Images</button>   
+      <div className='train'>
+          <button onClick={fetchAndClassifyImages}>Fetch and Classify Images</button>
+          {trainingInProgress && <p>Training in progress...</p>}
+          <button onClick={trainImages}>Display Images</button>  <br />
+          <input className="styled-input" placeholder = "Mention classification" onChange={(e) => setClass(e.target.value)} />
+      </div>
     </div>
   );
 }

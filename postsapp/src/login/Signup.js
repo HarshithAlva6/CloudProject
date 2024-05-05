@@ -116,9 +116,10 @@ const button = {
   margin: 10,
   cursor: "pointer",
   fontSize: 17,
-  color: "white",
-  backgroundColor: "#0055D0",
+  color: "black",
+  backgroundColor: "#1dcaff",
   border: "none",
+  boxShadow: "5px -5px 5px black",
 };
  
 const image = {

@@ -10,6 +10,7 @@ function WatchedList() {
     const indexOfLastRecord = currentPage * recordsPerPage;
     const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
     const [content, setContent] = useState([]);
+    const email = localStorage.getItem("email");
 
     const pull_data = (data, value) => {
         console.log("Pulled!",data, "Value",value);
@@ -20,10 +21,14 @@ function WatchedList() {
 
     async function fetchImg() {
         try {
-          fetchData('Images',(err, items) => {
-              setContent(items);
+          fetchData('UserImage',(err, items) => {
+            var res = [];
+            items.find(item => {
+              if(item.email === email) res.push(item);
+              })
+              setContent(res);
           })
-        } catch (error) { console.error('Error fetching users:', error); }
+        } catch (error) { console.error('Error fetching Blocked Images:', error); }
       }
     useEffect(() => {
         fetchImg();
@@ -31,7 +36,7 @@ function WatchedList() {
     var currentRecords = content.slice(indexOfFirstRecord, indexOfLastRecord);
     var nPages = Math.ceil(content.length / recordsPerPage);
     currentRecords = currentRecords.filter(curRec => curRec.display);
-    const page = "Watched";
+    const page = "UserImage";
 return (
     <div>
     <Navi />

@@ -29,3 +29,20 @@ export const putData = async (tableName , data) => {
         }
     }).promise();
 }
+export const deleteData = async (tableName, data) => {
+    var params = {
+        TableName: tableName,
+        Key: {
+            // Specify the primary key of the item you want to delete
+            "uid": data
+        }
+    };
+    try {
+        const result = await docClient.delete(params).promise();
+        console.log('Item deleted successfully:', result);
+        // Handle successful deletion (e.g., update state)
+    } catch (err) {
+        console.error('Error deleting item from DynamoDB:', err);
+        // Handle error (e.g., display error message)
+    }
+};

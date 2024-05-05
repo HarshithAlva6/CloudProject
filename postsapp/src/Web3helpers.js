@@ -16,17 +16,24 @@ if (window.ethereum) {
 };
 
 export const loadBlockchainData = async () => {
-const web3 = window.web3; // Load account
-const accounts = await web3.eth.getAccounts();
-console.log(accounts); // Network ID
-const networkId = await web3.eth.net.getId();
-console.log(networkId); // Network data
-if (networkId) {
-	const auth = new web3.eth.Contract(
-	Auth.abi,
-	Auth.networks[networkId].address
-	);
-	console.log(auth, "auth");
-	return { auth, accounts: accounts[0] };
+	const web3 = window.web3; // Load account
+	const accounts = await web3.eth.getAccounts();
+	console.log(accounts); // Network ID
+	const networkId = await web3.eth.net.getId();
+	console.log(networkId); // Network data
+	
+	if (networkId) {
+	  const auth = new web3.eth.Contract(
+		Auth.abi,
+		Auth.networks[networkId].address
+	  );
+	  console.log(auth, "auth");
+	  // Get Ether balance
+	  const balance = await web3.eth.getBalance(accounts[0]);
+	  const amount = web3.utils.fromWei(balance, 'ether') + ' ETH';
+	  console.log(amount);
+	  return { auth, accounts: accounts[0], amount };
+	} else {
+	  throw new Error("Network ID not available.");
 	}
-};
+  };

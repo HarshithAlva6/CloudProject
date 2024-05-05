@@ -3,12 +3,14 @@ import {fetchData, putData} from "../login/fetch";
 import {BUCKETS_REST_API_URL} from './AxiosList';
 import Heart from "react-animated-heart";
 import "../App.css";
+import { v4 as uuidv4 } from 'uuid';
 
 const Posts = (props) => {
     const [images, setImages] = useState({}); 
     const [imagesReadyCnt, setImagesReadyCnt] = useState(0);  // counter of preloaded images
     const [myStyle, setMyStyle] = useState({});
     const [likedPosts, setLikedPosts] = useState([]);
+    const email = localStorage.getItem("email");
     useEffect(() => {
         const importedImages = {};
         let i = 0;
@@ -22,41 +24,49 @@ const Posts = (props) => {
             img.src = BUCKETS_REST_API_URL+'/'+item.key;
             props.id.find(ide => {
               if((ide.imageName === img.src) && ide.display) {
-                console.log(ide, img.src);
               setMyStyle(prevState => ({
                 ...prevState,
                 [ide.imageId]: !prevState[ide.imageId]
               }))
-              console.log(myStyle); 
               return;         
             }});   
-            props.likeId.find(ide => {
-              if((ide.imageName === img.src) && ide.display) {
-                console.log(ide, img.src);
-                if (likedPosts.includes(ide.imageId)) {
-                  setLikedPosts(likedPosts.filter(id => id !== ide.imageId));
-                } else {
-                  setLikedPosts([...likedPosts, ide.imageId]);
-                }
-              return;         
-            }});         
+            props.likeId.forEach(ide => {
+              if (ide.imageName === img.src && ide.display) {
+                setLikedPosts(prevLikedPosts => {
+                  if (prevLikedPosts.includes(ide.imageId)) {
+                    console.log("In!2");
+                    return prevLikedPosts.filter(id => id !== ide.imageId);
+                  } else {
+                    console.log("In!3");
+                    return [...prevLikedPosts, ide.imageId];
+                  }
+                });
+              }
+            });       
           })
         setImages(importedImages); 
     }, [props]);
     if (Object.keys(images).length !== imagesReadyCnt || imagesReadyCnt < 1) {  
-        return  "Loading ...";
+        return  <h2>Loading ...</h2>;
       }
     const notOk = async (id, value) => {
       var cnt2 = 0;
+      const uuid = uuidv4();
       fetchData('Images',(err, items) => {
         items.find(item => {
-          (item.imageId === id) ? cnt2 = item.noCount + 1:cnt2 = 1;
+          if(item.imageId === id) cnt2 = item.noCount + 1;
           })
-          const userData = {
+          const imageData = {
             imageId: id,
-            display: true,
             imageName: value,
-            noCount: cnt2
+            noCount: cnt2?cnt2:1
+          }
+          const userImageData = {
+            uid: uuid,
+            email: email,
+            imageId: id,
+            imageName: value,
+            display: true
           }
           setMyStyle(prevState => ({
             ...myStyle,
@@ -64,38 +74,41 @@ const Posts = (props) => {
           }))
           props.func(id, value);
           console.log(myStyle);
-          putData('Images' , userData);
+          putData('Images' , imageData);
+          putData('UserImage', userImageData);
       })
     }
 
     const handleLike = (postId, value) => {
       console.log(postId);
-      var cnt2 = 0;
+      const uuid = uuidv4();
+      var cnt2=0;
       fetchData('LikeImages',(err, items) => {
         items.find(item => {
           (item.imageId === postId) ? cnt2 = item.noCount + 1:cnt2 = 1;
           })
-          const userData = {
-            imageId: postId,
-            display: true,
-            imageName: value,
-            noCount: cnt2
-          }
-          if (likedPosts.includes(postId)) {
-            setLikedPosts(likedPosts.filter(id => id !== postId));
-          } else {
-            setLikedPosts([...likedPosts, postId]);
-          }
-          props.func(postId, value);
-          console.log(myStyle);
-          putData('LikeImages' , userData);
-      })
-    };
+      const userData = {
+        uid: uuid,
+        email: email,
+        imageId: postId,
+        imageName: value,
+        display: true,
+      }
+      if (likedPosts.includes(postId)) {
+        setLikedPosts(likedPosts.filter(id => id !== postId));
+      } else {
+        setLikedPosts([...likedPosts, postId]);
+      }
+      props.func(postId, value);
+      console.log(myStyle);
+      putData('LikeImages' , userData);
+  })
+};
 
     const isPostLiked = (postId) => {
       return likedPosts.includes(postId) || myStyle[postId];
     }
-    console.log(myStyle);
+    console.log(myStyle, likedPosts);
     return(<div>
     {Object.values(images).map((value, i) => {
       return (

@@ -2,19 +2,18 @@ import React, {useState, useEffect} from "react";
 import { loadBlockchainData, loadWeb3 } from "../Web3helpers";
 import { useNavigate } from "react-router-dom";
 import {fetchData} from './fetch';
-import Navi from "../common/Navi";
  
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [accounts, setAccounts] = useState(null);
-  const [auth, setAuth] = useState(null);
+  const [amount, setAmount] = useState(null);
  
   const loadAccounts = async () => {
-    let { auth, accounts } = await loadBlockchainData();
+    let { auth, accounts, amount } = await loadBlockchainData();
     setAccounts(accounts);
-    setAuth(auth);
+    setAmount(amount);
   };
 
   const fetchDataFormDynamoDb = () => {
@@ -33,6 +32,7 @@ export default function SignIn() {
         if(items.find(item => item.email === email)){  
         localStorage.setItem("email", email);
         localStorage.setItem("account", accounts);
+        localStorage.setItem("amount", amount);
         navigate("/Home");
       } else {
         alert("wrong user credentials or please signup");
@@ -53,7 +53,7 @@ export default function SignIn() {
  
   return (
     <div style = {rootDiv}>
-      <Navi />
+      <h2>WEB CONTENT</h2>
       <img
         src="https://media.istockphoto.com/id/1057455004/vector/hand-hold-phone-logotype-hand-hold-smartphone.jpg?s=612x612&w=0&k=20&c=-RXiEdROvJMurKjA09aBGn4FJ2_qo_gIRMHdnV92oS4="
         style={image}
@@ -79,7 +79,7 @@ export default function SignIn() {
       </button>
  
       <span
-        style={{ cursor: "pointer" }}
+        style={button}
         onClick={() => {
           navigate("/Signup");
         }}
@@ -111,15 +111,16 @@ const input = {
 };
  
 const button = {
-  width: 325,
+  width: 300,
   padding: 10,
   borderRadius: 10,
   margin: 10,
   cursor: "pointer",
   fontSize: 17,
-  color: "white",
-  backgroundColor: "#0055D0",
+  color: "black",
+  backgroundColor: "#1dcaff",
   border: "none",
+  boxShadow: "5px 5px 5px black"
 };
  
 const image = {
@@ -127,4 +128,5 @@ const image = {
   height: 70,
   objectFit: "contain",
   borderRadius: 70,
+  margin: 30
 };

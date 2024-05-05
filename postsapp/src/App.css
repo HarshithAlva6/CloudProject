@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-color: #be0049;
+  background-color: #3360ff;
 }
 
 .App-logo {
@@ -44,20 +44,28 @@
   box-sizing: border-box;
 }
 
-.card:hover{
+.card:hover > button{
   transform: scale(1.1);
   transition: all linear 200ms;
   z-index: 1;
   box-shadow: 1px 1px 10px rgba(0,0,0,.3);
-  cursor: pointer;
 }
 
 #but {
   border-radius: 10px;
   border: none;
 }
-#but:hover {
+#but:hover > button{
   transform: scale(1.2);
+}
+#but > button:not(:hover) {
+  transform: scale(1); /* Reset scaling for buttons not being hovered */
+}
+#but button {
+  border-radius: 10px;
+  border: 1px;
+  margin: 3px;
+  box-shadow: 1px 1px 10px rgba(0,0,0,.3);
 }
 .container {
   width:180px;
@@ -82,12 +90,14 @@
 .lalign {
   margin: 0 40%;
   text-align: left;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.lalign h3{
+  font-family: "Sriracha", cursive;
 }
 .ralign {
   margin: 0 0;
   text-align: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Sriracha", cursive;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,6 +114,25 @@ h2 {
   position: absolute;
   top: 10px;
   right: 30px;
+}
+
+.train button{
+  background-color: #282c34;
+  color: whitesmoke;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.nav-item {
+  text-decoration: none;
+}
+
+.styled-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: all 0.3s;
 }
 
 @keyframes App-logo-spin {
