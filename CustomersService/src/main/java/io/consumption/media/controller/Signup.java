@@ -8,19 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.consumption.media.model.Customers;
+import io.consumption.media.model.CustomerData;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/signup")
 public class Signup {
 
-    private final CustomerRepository customerRepository;
+    private final CustomerData customerData;
 
-    public Signup(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public Signup(CustomerData customerData) {
+        this.customerData = customerData;
     }
     @GetMapping
-    public List<Customers> getCustomers() {
-        return (List<Customers>) customerRepository.findAll();
+    public List<Customers> fetchData() {
+        return customerData.fetchData("Users");
     }
 }

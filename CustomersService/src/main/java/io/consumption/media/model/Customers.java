@@ -7,51 +7,39 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "customer")
+@Table(name = "Users")
 public class Customers {
     @Id 
     @GeneratedValue
-    @Column(name = "id")
-    private long id;
-    private String firstName;
-    private String lastName;
-    private String password;
-    private String matchingPassword;
-    private String email;
-
-    public Customers() {}
-    public Customers(String firstName, String lastName, String email) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-	} 
-    public long getId() {
-        return id;
-    }
-    public String getFname() {
-        return firstName;
+    @Column(name = "userName")
+    private String userName;
+    public String getUname() {
+        return userName;
     }    
-    public void setFname(String firstName) {
-        this.firstName = firstName;
-    }    
-    public String getLname() {
-        return lastName;
-    }    
-    public void setLname(String lastName) {
-        this.lastName = lastName;
+    public void setUname(String userName) {
+        this.userName = userName;
     }  
+    @Column(name = "password")
+    private String password;
     public String getPword() {
         return password;
     }    
     public void setPword(String password) {
-        if(this.password == this.matchingPassword)
-            this.password = matchingPassword;
+        this.password = password;
     }  
+    @Column(name = "email")
+    private String email;
     public String getEmail() {
         return email;
     }    
     public void setEmail(String email) {
         this.email = email;
     }  
+    public Customers() {}
+    public Customers(String userName, String email, String password) {
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+	}   
     // standard getters and setters
 }
