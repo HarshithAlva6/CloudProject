@@ -119,7 +119,7 @@ async function fetchAndClassifyImages() {
     const numSamples = groupImages.length;
     console.log(predictionKey, '+', groupImages, "+", groupedImages, 
   '+', typeof(predictionKey));
-    if(predictionKey == `"${classify}"`){
+    if(predictionKey === `"${classify}"`){
       console.log("Got in!");
       groupImages.forEach(item => {
         dataArray.push({
