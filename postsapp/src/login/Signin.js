@@ -87,7 +87,7 @@ export default function SignIn() {
         {" "}
         Create new account{" "}
       </span>
-      <button onClick={() => fetchDataFormDynamoDb()}> Fetch </button>
+{/* <button onClick={() => fetchDataFormDynamoDb()}> Fetch </button> */}
     </div>
   );
 }
